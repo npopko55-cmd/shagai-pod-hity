@@ -1,0 +1,333 @@
+[
+  {
+    "file": "assets/hero/hero-desktop.webp",
+    "w": 1586,
+    "h": 992,
+    "src": "hero-clean-desktop.png",
+    "box": null,
+    "alpha": false
+  },
+  {
+    "file": "assets/hero/hero-desktop-1024.webp",
+    "w": 1024,
+    "h": 640,
+    "src": "hero-clean-desktop.png",
+    "box": null,
+    "alpha": false
+  },
+  {
+    "file": "assets/hero/hero-mobile.webp",
+    "w": 941,
+    "h": 1671,
+    "src": "hero-clean-mobile.png",
+    "box": null,
+    "alpha": false
+  },
+  {
+    "file": "assets/hero/hero-mobile-640.webp",
+    "w": 640,
+    "h": 1136,
+    "src": "hero-clean-mobile.png",
+    "box": null,
+    "alpha": false
+  },
+  {
+    "file": "assets/hero/avatar-1.webp",
+    "w": 80,
+    "h": 80,
+    "src": "b1-hero-mobile.png",
+    "box": [
+      104,
+      1541,
+      184,
+      1621
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/hero/avatar-2.webp",
+    "w": 80,
+    "h": 80,
+    "src": "b1-hero-mobile.png",
+    "box": [
+      177,
+      1541,
+      257,
+      1621
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/hero/avatar-3.webp",
+    "w": 80,
+    "h": 80,
+    "src": "b1-hero-mobile.png",
+    "box": [
+      252,
+      1541,
+      332,
+      1621
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/hero/avatar-4.webp",
+    "w": 80,
+    "h": 80,
+    "src": "b1-hero-mobile.png",
+    "box": [
+      328,
+      1541,
+      408,
+      1621
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/covers/agutin.webp",
+    "w": 74,
+    "h": 74,
+    "src": "b1-hero-mobile.png",
+    "box": [
+      148,
+      943,
+      222,
+      1017
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/covers/iowa.webp",
+    "w": 78,
+    "h": 78,
+    "src": "b1-hero-mobile.png",
+    "box": [
+      145,
+      1039,
+      223,
+      1117
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/covers/zivert.webp",
+    "w": 77,
+    "h": 77,
+    "src": "b1-hero-mobile.png",
+    "box": [
+      146,
+      1138,
+      223,
+      1215
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/covers/flowers.webp",
+    "w": 99,
+    "h": 99,
+    "src": "b4-format-mobile.png",
+    "box": [
+      139,
+      769,
+      238,
+      868
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/covers/calm-down.webp",
+    "w": 100,
+    "h": 100,
+    "src": "b4-format-mobile.png",
+    "box": [
+      139,
+      895,
+      239,
+      995
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/covers/dance-the-night.webp",
+    "w": 100,
+    "h": 100,
+    "src": "b4-format-mobile.png",
+    "box": [
+      139,
+      1020,
+      239,
+      1120
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/format/player-desktop.webp",
+    "w": 774,
+    "h": 581,
+    "src": "b4-format-desktop.png",
+    "box": [
+      746,
+      101,
+      1520,
+      682
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/format/player-mobile.webp",
+    "w": 828,
+    "h": 514,
+    "src": "b4-format-mobile.png",
+    "box": [
+      99,
+      154,
+      927,
+      668
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/stories/natalya-mobile.webp",
+    "w": 378,
+    "h": 286,
+    "src": "b6-stories-mobile.png",
+    "box": [
+      99,
+      280,
+      477,
+      566
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/stories/olga-mobile.webp",
+    "w": 378,
+    "h": 287,
+    "src": "b6-stories-mobile.png",
+    "box": [
+      99,
+      589,
+      477,
+      876
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/stories/irina-mobile.webp",
+    "w": 378,
+    "h": 280,
+    "src": "b6-stories-mobile.png",
+    "box": [
+      100,
+      897,
+      478,
+      1177
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/stories/natalya-desktop.webp",
+    "w": 284,
+    "h": 341,
+    "src": "b6-stories-desktop.png",
+    "box": [
+      46,
+      302,
+      330,
+      643
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/stories/olga-desktop.webp",
+    "w": 265,
+    "h": 342,
+    "src": "b6-stories-desktop.png",
+    "box": [
+      547,
+      302,
+      812,
+      644
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/stories/irina-desktop.webp",
+    "w": 290,
+    "h": 342,
+    "src": "b6-stories-desktop.png",
+    "box": [
+      1018,
+      301,
+      1308,
+      643
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/stories/sneaker.webp",
+    "w": 319,
+    "h": 266,
+    "src": "b6-stories-desktop.png",
+    "box": [
+      933,
+      693,
+      1252,
+      959
+    ],
+    "alpha": true
+  },
+  {
+    "file": "assets/stories/sneaker.png",
+    "w": 319,
+    "h": 266,
+    "src": "b6-stories-desktop.png",
+    "box": [
+      933,
+      693,
+      1252,
+      959
+    ],
+    "alpha": true
+  },
+  {
+    "file": "assets/trainers/anya.webp",
+    "w": 458,
+    "h": 397,
+    "src": "b7-trainers-desktop.png",
+    "box": [
+      37,
+      214,
+      495,
+      611
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/trainers/katya.webp",
+    "w": 452,
+    "h": 394,
+    "src": "b7-trainers-desktop.png",
+    "box": [
+      526,
+      216,
+      978,
+      610
+    ],
+    "alpha": false
+  },
+  {
+    "file": "assets/trainers/lena.webp",
+    "w": 454,
+    "h": 396,
+    "src": "b7-trainers-desktop.png",
+    "box": [
+      1010,
+      214,
+      1464,
+      610
+    ],
+    "alpha": false
+  }
+]
