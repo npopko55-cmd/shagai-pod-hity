@@ -290,44 +290,5 @@
       959
     ],
     "alpha": true
-  },
-  {
-    "file": "assets/trainers/anya.webp",
-    "w": 458,
-    "h": 397,
-    "src": "b7-trainers-desktop.png",
-    "box": [
-      37,
-      214,
-      495,
-      611
-    ],
-    "alpha": false
-  },
-  {
-    "file": "assets/trainers/katya.webp",
-    "w": 452,
-    "h": 394,
-    "src": "b7-trainers-desktop.png",
-    "box": [
-      526,
-      216,
-      978,
-      610
-    ],
-    "alpha": false
-  },
-  {
-    "file": "assets/trainers/lena.webp",
-    "w": 454,
-    "h": 396,
-    "src": "b7-trainers-desktop.png",
-    "box": [
-      1010,
-      214,
-      1464,
-      610
-    ],
-    "alpha": false
   }
 ]
