@@ -290,9 +290,13 @@
 .hits-hero__avatars img + img { margin-left: calc(-12 * var(--u)); }
 .hits-hero__proof-text { font-weight: 500; font-size: calc(18 * var(--u)); line-height: 1.3; color: var(--ink); }
 
-.hits-hero__hand { top: calc(-140 * var(--u)); left: calc(-36 * var(--u)); font-size: calc(29 * var(--u)); line-height: .98; color: var(--ink); transform: rotate(-14deg); }
-/* ноты — правее рукописной надписи, над плейлистом: не на голове и не на плече */
-.hits-hero__notes { position: absolute; top: calc(-160 * var(--u)); left: calc(80 * var(--u)); width: calc(80 * var(--u)); height: calc(110 * var(--u)); color: var(--red); pointer-events: none; }
+/* надпись на плашке (все ширины): тёмный текст не сливается с комнатой, плашка поворачивается вместе с текстом;
+   top/left сдвинуты на внутренние отступы — текст на прежнем месте */
+.hits-hero__hand { top: calc(-166 * var(--u)); left: calc(-54 * var(--u)); padding: clamp(6px, .48em, 14px) clamp(8px, .62em, 18px); border-radius: 18px; background-color: rgba(255, 255, 255, .86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 8px 24px rgba(6, 48, 61, .1); font-size: calc(29 * var(--u)); line-height: .98; color: var(--ink); transform: rotate(-14deg); }
+/* сердце ниже и правее: не задевает «просто» строкой выше и остаётся внутри плашки */
+.hits-hero__hand .hits-hand__heart { margin-left: .28em; vertical-align: -.32em; }
+/* ноты — правее плашки, над плейлистом: не на голове, не на плече и не на плашке */
+.hits-hero__notes { position: absolute; top: calc(-160 * var(--u)); left: calc(104 * var(--u)); width: calc(80 * var(--u)); height: calc(110 * var(--u)); color: var(--red); pointer-events: none; }
 .hits-hero__notes .hits-i { position: absolute; width: calc(36 * var(--u)); height: calc(36 * var(--u)); fill: none; stroke: currentColor; stroke-width: 1.7; }
 .hits-hero__notes .hits-i:first-child { top: 0; left: 0; transform: rotate(-6deg); }
 .hits-hero__notes .hits-i:last-child { top: calc(56 * var(--u)); left: calc(36 * var(--u)); transform: rotate(6deg); }
@@ -664,8 +668,11 @@
   .hits-hero__feature-ico { width: clamp(46px, 5cqw, 60px); height: clamp(46px, 5cqw, 60px); }
   .hits-hero__feature-ico .hits-i { width: 50%; height: 50%; }
   .hits-hero__feature-text { font-size: clamp(14.5px, 1.45cqw, 17px); line-height: 1.2; }
-  .hits-hero__hand { top: calc(3.13cqw + .95em); left: calc(68.98cqw + 26px); font-size: clamp(21px, 2.5vw, 30px); transform-origin: 0 0; }
-  .hits-hero__notes { top: calc(3.13cqw + 5.11 * clamp(21px, 2.5vw, 30px) + 4px); left: calc(68.98cqw + 16px + 1.2em); width: 2em; height: 2.3em; font-size: clamp(22px, 2.5vw, 30px); }
+  /* плашка с надписью — под постером на стене, правее футболки (фото x > 1094, y > 290): в просвет между головой
+     и постером плашка с кеглем ≥ 21px не помещается. Плашка ≈ 5.1em × 5em, поворот вокруг левого верхнего угла;
+     ноты — справа от её верхней части */
+  .hits-hero__hand { top: calc(21.3cqw + 1.234em); left: calc(84.49cqw - 3.755em); font-size: clamp(21px, 2.5vw, 30px); transform-origin: 0 0; }
+  .hits-hero__notes { top: calc(21.3cqw + .294em); left: calc(84.49cqw + 1.845em); width: 2em; height: 2.3em; font-size: clamp(21px, 2.5vw, 30px); }
   .hits-hero__notes .hits-i { width: 1em; height: 1em; }
   .hits-hero__notes .hits-i:last-child { top: 1.3em; left: .9em; }
 
@@ -845,7 +852,7 @@
   .hits-hero__bg-img { width: 100%; max-width: none; height: auto; aspect-ratio: 941 / 1671; object-position: 50% 0; -webkit-mask-image: linear-gradient(#000 76%, transparent); mask-image: linear-gradient(#000 76%, transparent); }
   .hits-hero__inner { width: calc(100% - var(--gutter) * 2); padding: 14px 0 30px; }
   .hits-hero__main { max-width: 220px; min-height: 0; padding-left: 4px; }
-  .hits-hero__side { max-width: none; margin-top: max(20px, calc(54cqw - 350px)); }
+  .hits-hero__side { max-width: none; margin-top: calc(max(20px, calc(54cqw - 350px)) - 1.98 * clamp(15px, calc(2.857cqw + 5.86px), 18px)); }
   .hits-hero__act { margin-top: 14px; }
   .hits-logo,
   .hits-hero__badge { --u: 1px; }
@@ -865,13 +872,20 @@
   .hits-hero__feature-ico { width: 40px; height: 40px; }
   .hits-hero__feature-ico .hits-i { width: 21px; height: 21px; }
   .hits-hero__feature-text { font-size: 14px; line-height: 1.2; }
-  /* надпись и ноты — справа от головы (голова кончается на 80.5cqw), выше плеча */
-  .hits-hero__hand { top: 12px; right: clamp(6px, calc(4cqw - 8px), 9px); left: auto; font-size: clamp(12px, calc(3.6cqw + 1px), 16px); line-height: 1; transform: rotate(-10deg); transform-origin: 50% 50%; }
-  .hits-hero__notes { top: calc(14px + 4.6em); right: calc(6px + 1.2em); left: auto; width: 2.6em; height: 2.2em; font-size: clamp(12px, calc(3.6cqw + 1px), 16px); }
+  /* ноты — над головой. Надпись на плашке — стикером на правый верхний угол карточки плейлиста: в потоке перед карточкой,
+     карточка подтянута под неё на 1.25 кегля (плашка выступает над карточкой на ~60% высоты), колонка поднята на остаток
+     высоты плашки — карточка на прежнем месте. Две строки только стилями: убрать <br> без склейки слов нельзя, поэтому
+     исходный текст схлопнут (font-size: 0, для скринридеров остаётся), видимые строки — в ::after с пустым альт-текстом.
+     Поменяется текст в разметке — поменять и здесь */
+  .hits-hero__hand { --hand-fs: clamp(15px, calc(2.857cqw + 5.86px), 18px); position: relative; top: auto; right: auto; left: auto; display: flex; align-items: flex-end; width: max-content; margin: 0 10px calc(-1.25 * var(--hand-fs)) auto; padding: calc(.48 * var(--hand-fs)) calc(.62 * var(--hand-fs)); font-size: 0; line-height: 1.08; transform: rotate(-6deg); transform-origin: 50% 50%; }
+  .hits-hero__hand::after { content: "Включай музыку\A и просто шагай!"; content: "Включай музыку\A и просто шагай!" / ""; font-size: var(--hand-fs); text-align: right; white-space: pre; }
+  .hits-hero__hand .hits-hand__heart { order: 1; width: calc(.95 * var(--hand-fs)); height: calc(.95 * var(--hand-fs)); margin: 0 0 calc(-.11 * var(--hand-fs)) calc(.36 * var(--hand-fs)); }
+  .hits-hero__notes { top: 4px; right: calc(9px + 5.95em); left: auto; width: 2.6em; height: 2.2em; font-size: clamp(12px, calc(3.6cqw + 1px), 16px); }
   .hits-hero__notes .hits-i { width: 1.2em; height: 1.2em; }
   .hits-hero__notes .hits-i:last-child { top: .9em; left: 1.3em; }
 
-  .hits-playlist--hero { padding: 14px 14px 12px; border-radius: 18px; }
+  /* верхний отступ карточки — ниже нижнего угла плашки: шапка «Сегодня · 3 песни» не уходит под стикер */
+  .hits-playlist--hero { padding: calc(1.7 * clamp(15px, calc(2.857cqw + 5.86px), 18px) + 6px) 14px 12px; border-radius: 18px; }
   .hits-playlist__head { margin-bottom: 8px; }
   .hits-playlist__today { font-size: 16px; }
   .hits-playlist__meta { gap: 6px; font-size: 12px; }
