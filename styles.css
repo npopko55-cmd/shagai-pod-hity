@@ -718,6 +718,19 @@
   .hits-tag { padding: 9px 22px; font-size: 15px; }
 }
 
+/* ---- 900–1199: hero — под фото ряд «плейлист | кнопка + 50 000+», ряд по центру контейнера;
+   текст над рядом остаётся у левого края (крайние колонки 1fr поглощают остаток) ---- */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .hits-hero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 520px) minmax(0, 340px) minmax(0, 1fr); grid-template-areas: "main main main main" ". side act ."; column-gap: 32px; }
+  .hits-hero__side { max-width: none; }
+  .hits-hero__act { align-self: center; max-width: none; margin-top: 20px; }
+  .hits-hero__cta { gap: 18px; padding-left: 34px; font-size: 22px; }
+  .hits-hero__proof { gap: 14px; }
+  .hits-hero__avatars img { width: 48px; height: 48px; }
+  .hits-hero__avatars img + img { margin-left: -10px; }
+  .hits-hero__proof-text { font-size: 16px; }
+}
+
 /* ---- 768–1023: планшет ---- */
 @media (max-width: 1023px) {
   .hits-section { padding: 56px 0; }
@@ -801,6 +814,13 @@
   .hits-compare__curve { width: 56px; height: 30px; }
 }
 
+/* ---- 768–899: hero — плейлист, кнопка и «50 000+» одной колонкой по центру ---- */
+@media (min-width: 768px) and (max-width: 899px) {
+  .hits-hero__side,
+  .hits-hero__act { justify-self: center; width: 100%; max-width: 560px; }
+  .hits-hero__proof { justify-content: center; }
+}
+
 /* ---- < 768: мобилка (макеты 390, держится на 320–430) ---- */
 @media (max-width: 767px) {
   .hits { --gutter: 20px; }
@@ -818,35 +838,38 @@
   .hits-btn__arrow .hits-i { width: 19px; height: 19px; }
 
   /* ---------- hero ---------- */
-  /* фото на 12% крупнее и прижато влево-вверх (женщина уходит вправо, кулак в кадре),
-     опущено под подзаголовок; верх и низ растворяются в фон; плейлист — ниже кадра */
-  .hits-hero__bg { top: calc(242px - 22cqw); bottom: auto; height: auto; }
-  .hits-hero__bg-img { width: 112%; max-width: none; height: 110cqw; aspect-ratio: auto; object-position: 0 0; -webkit-mask-image: linear-gradient(transparent, #000 48px, #000 76%, transparent); mask-image: linear-gradient(transparent, #000 48px, #000 76%, transparent); }
-  .hits-hero__inner { width: calc(100% - var(--gutter) * 2); padding: 16px 0 30px; }
-  .hits-hero__main { max-width: 212px; min-height: calc(204px + 88cqw); padding-left: 4px; }
-  .hits-hero__side { max-width: none; margin-top: 22px; }
-  .hits-hero__act { margin-top: 16px; }
+  /* фото фоном верхней части (как в макете): ширина 106cqw, верх кулака на 40px от верха hero;
+     текст поверх левой части — левее диагонали руки; плейлист заходит на ноги; низ фото растворяется под карточкой */
+  .hits-hero__bg { top: calc(40px - 37.74cqw); right: auto; bottom: auto; width: 106cqw; height: auto; }
+  .hits-hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(252, 251, 248, .55), rgba(252, 251, 248, .22) 38%, rgba(252, 251, 248, 0) 52%); pointer-events: none; }
+  .hits-hero__bg-img { width: 100%; max-width: none; height: auto; aspect-ratio: 941 / 1671; object-position: 50% 0; -webkit-mask-image: linear-gradient(#000 76%, transparent); mask-image: linear-gradient(#000 76%, transparent); }
+  .hits-hero__inner { width: calc(100% - var(--gutter) * 2); padding: 14px 0 30px; }
+  .hits-hero__main { max-width: 220px; min-height: 0; padding-left: 4px; }
+  .hits-hero__side { max-width: none; margin-top: max(20px, calc(54cqw - 350px)); }
+  .hits-hero__act { margin-top: 14px; }
   .hits-logo,
   .hits-hero__badge { --u: 1px; }
   .hits-logo { margin-left: 10px; }
-  .hits-logo .logo__svg { width: 76px; }
-  .hits-hero__badge { margin: 26px 0 0 22px; transform: rotate(-11deg); }
-  .hits-hero__badge-text { padding: 5px 13px 6px; font-size: 17px; }
-  .hits-hero__badge-rays { width: 18px; height: 22px; }
-  .hits-hero__badge-rays--l { left: -20px; }
-  .hits-hero__badge-rays--r { right: -20px; }
-  .hits-hero__title { margin-top: 18px; font-size: clamp(32px, 9.2vw, 38px); line-height: .86; transform: rotate(-5deg); }
-  .hits-hero__title-note { width: 22px; height: 22px; margin-left: 18px; }
-  .hits-hero__sub { max-width: 200px; margin-top: 16px; font-size: 14px; line-height: 1.32; }
-  .hits-hero__features { grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 14px 0 0; }
-  .hits-hero__feature { flex-direction: row; gap: 14px; text-align: left; }
-  .hits-hero__feature-ico { width: 46px; height: 46px; }
-  .hits-hero__feature-ico .hits-i { width: 24px; height: 24px; }
-  .hits-hero__feature-text { font-size: 14.5px; line-height: 1.2; }
-  .hits-hero__hand { top: calc(50px + 18.9cqw); right: 20px; left: auto; font-size: 18px; line-height: 1; transform: rotate(-12deg); transform-origin: 50% 50%; }
-  .hits-hero__notes { top: calc(166px + 18.9cqw); right: auto; left: 59cqw; width: 44px; height: 60px; font-size: 22px; }
-  .hits-hero__notes .hits-i { width: 22px; height: 22px; }
-  .hits-hero__notes .hits-i:last-child { top: 30px; left: 20px; }
+  .hits-logo .logo__svg { width: 72px; }
+  /* бейдж едет влево вместе с рукой (кулак начинается на 54.07cqw) */
+  .hits-hero__badge { margin: 20px 0 0 clamp(4px, calc(54cqw - 189px), 22px); transform: rotate(-11deg); }
+  .hits-hero__badge-text { padding: 4px 11px 5px; font-size: 14.5px; }
+  .hits-hero__badge-rays { width: 15px; height: 19px; }
+  .hits-hero__badge-rays--l { left: -17px; }
+  .hits-hero__badge-rays--r { right: -17px; }
+  .hits-hero__title { margin-top: 14px; font-size: clamp(30px, 8vw, 38px); line-height: .86; transform: rotate(-5deg); }
+  .hits-hero__title-note { width: 20px; height: 20px; margin-left: 14px; }
+  .hits-hero__sub { max-width: 45cqw; margin-top: 12px; font-size: 14px; line-height: 1.3; }
+  .hits-hero__features { grid-template-columns: minmax(0, 1fr); gap: 6px; margin: 12px 0 0; }
+  .hits-hero__feature { flex-direction: row; gap: 12px; text-align: left; }
+  .hits-hero__feature-ico { width: 40px; height: 40px; }
+  .hits-hero__feature-ico .hits-i { width: 21px; height: 21px; }
+  .hits-hero__feature-text { font-size: 14px; line-height: 1.2; }
+  /* надпись и ноты — справа от головы (голова кончается на 80.5cqw), выше плеча */
+  .hits-hero__hand { top: 12px; right: clamp(6px, calc(4cqw - 8px), 9px); left: auto; font-size: clamp(12px, calc(3.6cqw + 1px), 16px); line-height: 1; transform: rotate(-10deg); transform-origin: 50% 50%; }
+  .hits-hero__notes { top: calc(14px + 4.6em); right: calc(6px + 1.2em); left: auto; width: 2.6em; height: 2.2em; font-size: clamp(12px, calc(3.6cqw + 1px), 16px); }
+  .hits-hero__notes .hits-i { width: 1.2em; height: 1.2em; }
+  .hits-hero__notes .hits-i:last-child { top: .9em; left: 1.3em; }
 
   .hits-playlist--hero { padding: 14px 14px 12px; border-radius: 18px; }
   .hits-playlist__head { margin-bottom: 8px; }
@@ -1042,10 +1065,13 @@
 /* ---- < 360: узкие телефоны ---- */
 @media (max-width: 359px) {
   .hits-hero__main { max-width: 190px; }
-  .hits-hero__hand { font-size: 16px; }
+  .hits-hero__badge-text { padding: 3px 8px 4px; font-size: 12px; }
+  .hits-hero__title { font-size: 28px; }
+  .hits-hero__sub { font-size: 13px; }
   .hits-hero__notes { display: none; }
   .hits-hero__proof { gap: 10px; }
   .hits-hero__avatars img { width: 40px; height: 40px; }
+  .hits-hero__proof-text { font-size: 13.5px; }
   .hits-compare__hand-in,
   .hits-compare__note { display: none; }
   .hits-compare__act { grid-template-columns: minmax(0, 1fr); justify-items: center; }
