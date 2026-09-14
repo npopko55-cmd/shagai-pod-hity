@@ -1,8 +1,5 @@
-/* Shagai pod hity landing. Vanilla JS, no dependencies. ASCII only.
-   Tilda-safe: the page may be cut into many blocks, each with its own
-   <div class="hits"> wrapper. Every module searches the whole document,
-   the script initialises once per page (flag on window) and works whether
-   it is included before, between or after the markup, even twice. */
+<script>
+
 (function () {
   'use strict';
 
@@ -24,12 +21,9 @@
   function trim(value) { return String(value == null ? '' : value).replace(/^\s+|\s+$/g, ''); }
   function playSafe(media) {
     var promise = media.play();
-    if (promise && typeof promise.catch === 'function') promise.catch(function () { /* blocked */ });
+    if (promise && typeof promise.catch === 'function') promise.catch(function () {  });
   }
 
-  /* ---------------------------------------------------------
-     1. Smooth anchor scroll (own rAF animation)
-     --------------------------------------------------------- */
   function initAnchors() {
     var pageRaf = 0;
     function stopPageScroll() { if (pageRaf) { cancelAnimationFrame(pageRaf); pageRaf = 0; } }
@@ -64,7 +58,6 @@
       var href = link.getAttribute('href') || '';
       if (href.charAt(0) !== '#' || href.length < 2) return;
 
-      /* tariff buttons without payment links yet: no jump */
       if (link.hasAttribute('data-tariff')) { e.preventDefault(); return; }
 
       var target = document.getElementById(href.slice(1));
@@ -73,14 +66,11 @@
       var top = target.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0);
       scrollPageTo(top);
       if (window.history && typeof window.history.replaceState === 'function') {
-        try { window.history.replaceState(null, '', href); } catch (err) { /* ignore */ }
+        try { window.history.replaceState(null, '', href); } catch (err) {  }
       }
     });
   }
 
-  /* ---------------------------------------------------------
-     2. Tariffs carousel (mobile): snap + dots + rAF animation
-     --------------------------------------------------------- */
   function initCarousel(box) {
     if (box.__hitsCarousel) return;
     box.__hitsCarousel = true;
@@ -150,7 +140,6 @@
       setActive(index);
       if (Math.abs(dist) < 2) return;
 
-      /* snap fights programmatic scrolling: switch it off while animating */
       locked = true;
       track.classList.add('is-animating');
       track.style.scrollSnapType = 'none';
@@ -205,14 +194,9 @@
     setActive(0);
   }
 
-  /* ---------------------------------------------------------
-     3. Media slots. Only links go into the markup:
-        data-video on [data-track] rows and .hits-player (Kinescope or .mp4/.webm),
-        data-audio on hero rows (.mp3/.m4a), data-photo on trainer photo zones.
-     --------------------------------------------------------- */
   var KINESCOPE_ALLOW = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
-  var music = null;   /* shared <audio> */
-  var player = null;  /* { pause: fn } */
+  var music = null;
+  var player = null;
 
   function parseVideo(raw) {
     var value = trim(raw);
@@ -246,7 +230,7 @@
       var media = currentMedia();
       if (media) {
         if (media.tagName === 'VIDEO') {
-          try { media.pause(); media.removeAttribute('src'); media.load(); } catch (err) { /* ignore */ }
+          try { media.pause(); media.removeAttribute('src'); media.load(); } catch (err) {  }
         }
         media.parentNode.removeChild(media);
       }
@@ -320,7 +304,7 @@
       pause: function () {
         var media = currentMedia();
         if (!media) return;
-        /* a cross-origin iframe cannot be paused: put the picture back */
+
         if (media.tagName === 'VIDEO') media.pause(); else clearMedia();
       }
     };
@@ -400,7 +384,7 @@
   }
 
   function initMediaExclusion() {
-    /* only one thing plays at a time: music pauses the video and vice versa */
+
     document.addEventListener('play', function (e) {
       var target = e.target;
       if (!target || target.nodeType !== 1) return;
@@ -409,9 +393,6 @@
     }, true);
   }
 
-  /* ---------------------------------------------------------
-     4. UTM passthrough to walk-walk.ru links
-     --------------------------------------------------------- */
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'erid'];
 
   function readUtm() {
@@ -488,16 +469,13 @@
     }, true);
   }
 
-  /* ---------------------------------------------------------
-     5. Yandex Metrika goals (counter is installed by Tilda)
-     --------------------------------------------------------- */
   function initGoals() {
     document.addEventListener('click', function (e) {
       var el = closest(e.target, '[data-goal]');
       if (!el) return;
       var goal = el.getAttribute('data-goal');
       if (goal && typeof window.ym === 'function') {
-        try { window.ym(94057307, 'reachGoal', goal); } catch (err) { /* ignore */ }
+        try { window.ym(94057307, 'reachGoal', goal); } catch (err) {  }
       }
     });
   }
@@ -516,3 +494,5 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
 })();
+
+</script>

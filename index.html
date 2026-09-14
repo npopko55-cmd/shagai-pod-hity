@@ -19,6 +19,7 @@
   <symbol id="i-fire" viewBox="0 0 24 24"><g transform="translate(0 -1.6)"><path d="M12.6 1.8c.5 3.3-1.2 5-3 6.9C7.8 10.6 5.8 12.6 5.8 15.6 5.8 19.4 8.6 22.3 12 22.3s6.2-2.9 6.2-6.8c0-2.7-1.2-4.6-2.5-6-.3 1.6-1 2.7-2.3 3.2.7-4-.3-8.4-.8-10.9z"/><path d="M12 21c-1.8 0-3.1-1.4-3.1-3.2 0-2.2 1.9-3.2 2.8-5.2.9 1.3 3.4 3 3.4 5.4 0 1.7-1.3 3-3.1 3z" fill="#ff9b52"/></g></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><g transform="translate(-0.6 0)"><path d="M5 12h13.5M12.5 5.5L19 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><g transform="translate(-0.4 0)"><path d="M7.5 5.2v13.6c0 .8.9 1.3 1.6.9l10.6-6.8c.6-.4.6-1.3 0-1.7L9.1 4.3c-.7-.4-1.6.1-1.6.9z"/></g></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6.5" y="5" width="4" height="14" rx="1.3"/><rect x="13.5" y="5" width="4" height="14" rx="1.3"/></symbol>
   <symbol id="i-bars" viewBox="0 0 24 24"><g transform="translate(-1.2 -1.2)"><rect x="3" y="13.5" width="4.6" height="7.5" rx="1.2"/><rect x="9.7" y="8.5" width="4.6" height="12.5" rx="1.2"/><rect x="16.4" y="3" width="4.6" height="18" rx="1.2"/></g></symbol>
   <symbol id="i-bars-rays" viewBox="0 0 26 26"><rect x="2" y="15" width="5" height="9" rx="1"/><rect x="9" y="10.5" width="5" height="13.5" rx="1"/><rect x="16" y="6" width="5" height="18" rx="1"/><path d="M17.5 3.2L17 1M21.3 4.2l1.5-1.6M22.6 7.6l2.2-.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-rays" viewBox="0 0 24 24"><g transform="translate(12 12) scale(1.35) translate(-8.88 -9.29)"><path d="M13.5 3.5l-1 5M6.5 6.5l3.5 3.8M3.5 14.5l5-1" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></g></symbol>
@@ -72,20 +73,23 @@
           <span class="hits-playlist__meta">3&nbsp;песни · ~ 1&nbsp;250&nbsp;шагов <svg class="hits-i hits-i--outline hits-playlist__heart" aria-hidden="true"><use href="#i-heart"/></svg></span>
         </div>
         <ol class="hits-playlist__list">
-          <li class="hits-track">
+          <!-- SLOT audio track 1: .mp3 or .m4a URL into data-audio (empty = button scrolls to #format) -->
+          <li class="hits-track" data-audio="">
             <img class="hits-track__cover" src="assets/covers/agutin.webp" width="74" height="74" alt="Обложка: Леонид Агутин&nbsp;— «Остров»">
             <span class="hits-track__info"><b class="hits-track__title">1. Леонид Агутин</b><span class="hits-track__song">Остров</span><span class="hits-track__steps">≈ 450&nbsp;шагов · 3:50</span></span>
-            <a class="hits-play" href="#format" aria-label="Смотреть формат: Леонид Агутин&nbsp;— Остров"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></a>
+            <a class="hits-play" href="#format" aria-label="Смотреть формат: Леонид Агутин&nbsp;— Остров" data-label-play="Слушать: Леонид Агутин&nbsp;— Остров" data-label-pause="Пауза: Леонид Агутин&nbsp;— Остров"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></a>
           </li>
-          <li class="hits-track">
+          <!-- SLOT audio track 2: .mp3 or .m4a URL into data-audio (empty = button scrolls to #format) -->
+          <li class="hits-track" data-audio="">
             <img class="hits-track__cover" src="assets/covers/iowa.webp" width="78" height="78" alt="Обложка: IOWA&nbsp;— «Улыбайся»">
             <span class="hits-track__info"><b class="hits-track__title">2. IOWA</b><span class="hits-track__song">Улыбайся</span><span class="hits-track__steps">≈ 450&nbsp;шагов · 3:50</span></span>
-            <a class="hits-play" href="#format" aria-label="Смотреть формат: IOWA&nbsp;— Улыбайся"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></a>
+            <a class="hits-play" href="#format" aria-label="Смотреть формат: IOWA&nbsp;— Улыбайся" data-label-play="Слушать: IOWA&nbsp;— Улыбайся" data-label-pause="Пауза: IOWA&nbsp;— Улыбайся"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></a>
           </li>
-          <li class="hits-track">
+          <!-- SLOT audio track 3: .mp3 or .m4a URL into data-audio (empty = button scrolls to #format) -->
+          <li class="hits-track" data-audio="">
             <img class="hits-track__cover" src="assets/covers/zivert.webp" width="77" height="77" alt="Обложка: Zivert&nbsp;— «GAZ»">
             <span class="hits-track__info"><b class="hits-track__title">3. Zivert</b><span class="hits-track__song">GAZ</span><span class="hits-track__steps">≈ 400&nbsp;шагов · 3:00</span></span>
-            <a class="hits-play" href="#format" aria-label="Смотреть формат: Zivert&nbsp;— GAZ"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></a>
+            <a class="hits-play" href="#format" aria-label="Смотреть формат: Zivert&nbsp;— GAZ" data-label-play="Слушать: Zivert&nbsp;— GAZ" data-label-pause="Пауза: Zivert&nbsp;— GAZ"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></a>
           </li>
         </ol>
         <div class="hits-playlist__foot">
@@ -189,6 +193,7 @@
       </div>
 
       <div class="hits-format__media">
+        <!-- SLOT video player: Kinescope link or .mp4 URL, plays on picture click when the active track has no video -->
         <div class="hits-player" data-video="">
           <picture>
             <source media="(min-width: 768px)" srcset="assets/format/player-desktop.webp" width="774" height="581">
@@ -204,18 +209,21 @@
             <span class="hits-playlist__meta">3&nbsp;хита&nbsp;— до 1&nbsp;500&nbsp;шагов! <svg class="hits-i hits-i--outline hits-playlist__heart" aria-hidden="true"><use href="#i-heart"/></svg></span>
           </div>
           <ol class="hits-playlist__list">
+            <!-- SLOT video track 1: Kinescope link or .mp4 URL into data-video -->
             <li class="hits-track hits-track--big is-active" data-track="1" data-video="">
               <img class="hits-track__cover" src="assets/covers/flowers.webp" width="99" height="99" loading="lazy" alt="Обложка: Miley Cyrus&nbsp;— «Flowers»">
               <span class="hits-track__num">1.</span>
               <span class="hits-track__info"><b class="hits-track__title">Flowers</b><span class="hits-track__song">Miley Cyrus</span><span class="hits-track__steps"><svg class="hits-i hits-track__steps-ico" aria-hidden="true"><use href="#i-steps"/></svg>≈ 480&nbsp;шагов за 3:45</span></span>
               <button class="hits-play hits-play--active" type="button" aria-label="Смотреть отрывок: Flowers&nbsp;— Miley Cyrus"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></button>
             </li>
+            <!-- SLOT video track 2: Kinescope link or .mp4 URL into data-video -->
             <li class="hits-track hits-track--big" data-track="2" data-video="">
               <img class="hits-track__cover" src="assets/covers/calm-down.webp" width="100" height="100" loading="lazy" alt="Обложка: Rema, Selena Gomez&nbsp;— «Calm Down»">
               <span class="hits-track__num">2.</span>
               <span class="hits-track__info"><b class="hits-track__title">Calm Down</b><span class="hits-track__song">Rema, Selena Gomez</span><span class="hits-track__steps"><svg class="hits-i hits-track__steps-ico" aria-hidden="true"><use href="#i-steps"/></svg>≈ 520&nbsp;шагов за 3:50</span></span>
               <button class="hits-play" type="button" aria-label="Смотреть отрывок: Calm Down&nbsp;— Rema, Selena Gomez"><svg class="hits-i" aria-hidden="true"><use href="#i-play"/></svg></button>
             </li>
+            <!-- SLOT video track 3: Kinescope link or .mp4 URL into data-video -->
             <li class="hits-track hits-track--big" data-track="3" data-video="">
               <img class="hits-track__cover" src="assets/covers/dance-the-night.webp" width="100" height="100" loading="lazy" alt="Обложка: Dua Lipa&nbsp;— «Dance The Night»">
               <span class="hits-track__num">3.</span>
@@ -400,6 +408,7 @@
 
     <ul class="hits-trainers__list hits-wide">
       <li class="hits-trainer">
+        <!-- SLOT photo trainer 1: image URL (jpg/png/webp, 458x397 or larger) into data-photo -->
         <div class="hits-trainer__photo" data-photo="">
           <p class="hits-hand hits-trainer__hand">Заряжает<br>энергией<svg class="hits-i hits-i--outline hits-hand__heart" aria-hidden="true"><use href="#i-heart"/></svg></p>
         </div>
@@ -410,6 +419,7 @@
         </div>
       </li>
       <li class="hits-trainer">
+        <!-- SLOT photo trainer 2: image URL (jpg/png/webp, 458x397 or larger) into data-photo -->
         <div class="hits-trainer__photo" data-photo="">
           <p class="hits-hand hits-trainer__hand">Объясняет<br>так, что<br>получается<br>у&nbsp;каждого<svg class="hits-i hits-i--outline hits-hand__heart" aria-hidden="true"><use href="#i-heart"/></svg></p>
         </div>
@@ -420,6 +430,7 @@
         </div>
       </li>
       <li class="hits-trainer">
+        <!-- SLOT photo trainer 3: image URL (jpg/png/webp, 458x397 or larger) into data-photo -->
         <div class="hits-trainer__photo" data-photo="">
           <p class="hits-hand hits-trainer__hand">Та самая,<br>с&nbsp;которой<br>хочется<br>дошагать<br>ещё одну<br>песню!<svg class="hits-i hits-i--outline hits-hand__heart" aria-hidden="true"><use href="#i-heart"/></svg></p>
         </div>

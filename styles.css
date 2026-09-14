@@ -202,6 +202,8 @@
 .hits-play .hits-i { width: 26px; height: 26px; }
 .hits-play:hover { transform: scale(1.06); border-color: var(--red); }
 .hits-play--active { border-color: transparent; color: var(--red); box-shadow: 0 8px 20px rgba(238, 51, 18, .16); }
+/* трек hero играет (data-audio): мягкая подложка под строкой, кнопка — как активная */
+.hits-playlist--hero .hits-track.is-playing::before { content: ""; position: absolute; inset: -5px -8px; z-index: -1; border-radius: 12px; background-color: var(--pink-50); }
 
 .hits-playlist__foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
 .hits-playlist__sum { display: flex; flex-direction: column; color: var(--red); }
@@ -452,8 +454,12 @@
 
 .hits-player { position: relative; overflow: hidden; border-radius: 22px; background-color: var(--pink-50); box-shadow: 0 18px 44px rgba(6, 48, 61, .16); }
 .hits-player__img,
-.hits-player video { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-.hits-player video { background-color: #000; }
+.hits-player video,
+.hits-player iframe { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.hits-player video,
+.hits-player iframe { border: 0; background-color: #000; }
+/* у активного трека есть ролик (data-video): картинка кликабельна */
+.hits-player.is-ready:not(.is-playing) { cursor: pointer; }
 
 .hits-playlist--format { padding: 22px 22px 16px; }
 .hits-playlist--format .hits-playlist__head { margin-bottom: 10px; padding: 0 6px; }
@@ -635,6 +641,16 @@
   .hits-hero__act { position: relative; left: min(0px, calc(148px - 9.016cqw)); }
 }
 
+/* ---- 1280–1439: рукописные надписи и шапка тарифов за контейнером — не дальше края экрана (запас на поворот) ---- */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .hits-problem__hand-l { left: max(-66px, calc((var(--container) - 100vw) / 2 + 28px)); }
+  .hits-problem__hand-r { right: max(-64px, calc((var(--container) - 100vw) / 2 + 22px)); }
+  .hits-compare__hand-tl { left: max(-80px, calc((var(--container) - 100vw) / 2 + 24px)); }
+  .hits-compare__hand-tr { right: max(-80px, calc((var(--container) - 100vw) / 2 + 24px)); }
+  .hits-tariffs__hand { right: max(-100px, calc((var(--container) - 100vw) / 2 + 28px)); }
+  .hits-tariffs__head { margin-inline: max(-60px, calc((var(--container) - 100vw) / 2 + 8px)); }
+}
+
 /* ---- 1024–1279: рукописные надписи внутрь контейнера ---- */
 @media (max-width: 1279px) {
   .hits-problem__hand-l { left: 0; font-size: 22px; }
@@ -645,6 +661,11 @@
   .hits-compare__strokes-tr { right: 170px; }
   .hits-tariffs__head { margin-inline: 0; }
   .hits-tariffs__hand { top: -64px; right: 0; font-size: 21px; }
+  /* подписи у кнопки сравнения: стрелка над текстом, текст переносится — не уходит за правый край на 900–1279 */
+  .hits-compare__note { flex-direction: column; gap: 4px; }
+  .hits-compare__note--l { align-items: flex-end; }
+  .hits-compare__note--r { align-items: flex-start; }
+  .hits-compare__note > span { white-space: normal; }
 }
 
 /* ---- 1024–1199: та же сетка, всё компактнее ---- */
@@ -971,7 +992,8 @@
   .hits-format__media { margin-top: 14px; }
   .hits-player { border-radius: 16px; }
   .hits-player__img,
-  .hits-player video { aspect-ratio: 1.6; }
+  .hits-player video,
+  .hits-player iframe { aspect-ratio: 1.6; }
   .hits-format__list { margin-top: 12px; }
   .hits-playlist--format { padding: 14px 10px 10px; border-radius: 18px; }
   .hits-playlist--format .hits-playlist__head { padding: 0 8px; }
@@ -1002,7 +1024,8 @@
   .hits-tariffs { padding: 36px 0 36px; }
   .hits-tariffs__title { font-size: clamp(20px, 6vw, 24px); }
   .hits-tariffs__sub { margin-top: 8px; font-size: 15px; }
-  .hits-tariffs__hand { top: -26px; right: -10px; font-size: 15px; transform: rotate(-12deg); }
+  /* надпись выше шапки: не закрывает «ВЫБЕРИТЕ СВОЙ ТАРИФ» и первую строку заголовка на 320–390 */
+  .hits-tariffs__hand { top: -58px; right: -10px; font-size: 15px; transform: rotate(-12deg); }
   .hits-tariffs__hand .hits-hand__heart { width: 22px; height: 22px; margin: 2px 6px 0 auto; }
   .hits-tariffs__slider { margin: 12px calc(var(--gutter) * -1) 0; }
   .hits-tariffs__track {
@@ -1090,6 +1113,11 @@
   .hits-compare__note { display: none; }
   .hits-compare__act { grid-template-columns: minmax(0, 1fr); justify-items: center; }
   .hits-stories__panel-text { max-width: 78%; }
+}
+
+/* ---- < 390: «Легко. Просто. С удовольствием.» налезает на первую строку колонки сравнения ---- */
+@media (max-width: 389px) {
+  .hits-compare__hand-in { display: none; }
 }
 
 /* ---- без анимаций ---- */
