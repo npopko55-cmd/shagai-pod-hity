@@ -705,6 +705,15 @@ if slots_md.exists():
     txt = txt.replace("**", "").replace("`", "")
     slots_extra = "\nПодробно (из SLOTS.md):\n" + "\n".join("  " + ln if ln.strip() else "" for ln in txt.strip().splitlines()) + "\n"
 
+# ЗДЕСЬ добавлено: ссылки оплаты. Номер блока с тарифами не хардкодим — берём
+# готовые имена из «ДЛЯ ТИЛЬДЫ» у файлов секции #tariffs (секция могла разрезаться).
+tariff_hn = [hn for (name, _h, _c), (hn, _hc) in zip(files, human_names)
+             if re.fullmatch(r"markup-\d+-tariffs(?:-\d+)?\.html", name)]
+if tariff_hn:
+    tariff_where = ("файл " if len(tariff_hn) == 1 else "файлы ") + ", ".join(f"«{hn}»" for hn in tariff_hn)
+else:
+    tariff_where = "секция #tariffs в сборку не попала"
+
 readme = f"""ШАГАЙ ПОД ХИТЫ — блоки для Тильды
 =================================
 
@@ -724,6 +733,18 @@ readme = f"""ШАГАЙ ПОД ХИТЫ — блоки для Тильды
 (например data-video="https://…"):
 {chr(10).join(slot_lines)}
 {slots_extra}
+Ссылки оплаты тарифов — {tariff_where}, 4 кнопки «Выбрать»:
+  data-tariff="1m"  — 1 месяц
+  data-tariff="3m"  — 3 месяца
+  data-tariff="6m"  — 6 месяцев
+  data-tariff="12m" — 12 месяцев
+У каждой кнопки заменить href="#tariffs" на полную ссылку оплаты, например
+href="https://walk-walk.ru/podhity/tarif_1". Пишите ссылку целиком, с https://.
+Метки из адреса страницы (utm_source, utm_medium, utm_campaign, utm_content,
+utm_term, erid) скрипт сам допишет к ссылкам на walk-walk.ru (включая поддомены)
+и на *.getcourse.ru. Атрибуты data-tariff и data-goal не удалять — по data-goal
+считаются цели Метрики.
+
 Картинки ({len(cdn_urls)} шт.) пока грузятся с GitHub. Загрузите их в Тильду
 и пришлите ссылки — они подставятся пересборкой, и внешних адресов на
 странице не останется.

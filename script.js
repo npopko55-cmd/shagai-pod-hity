@@ -410,9 +410,30 @@
   }
 
   /* ---------------------------------------------------------
-     4. UTM passthrough to walk-walk.ru links
+     4. UTM passthrough to walk-walk.ru and getcourse.ru links
+        (any subdomain; relative links go to walk-walk.ru as well)
      --------------------------------------------------------- */
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'erid'];
+  var UTM_HOSTS = ['walk-walk.ru', 'getcourse.ru'];
+
+  /* decodes only valid %XX runs and keeps the rest as typed, so raw ad
+     macros like vk:%userid% survive instead of throwing URIError */
+  function softDecode(raw) {
+    return String(raw).replace(/\+/g, ' ').replace(/(?:%[0-9a-f]{2})+/gi, function (run) {
+      try { return decodeURIComponent(run); } catch (err) { /* broken UTF-8: piece by piece */ }
+      var out = '';
+      var at = 0;
+      while (at < run.length) {
+        var size = Math.min(12, run.length - at);
+        for (; size > 0; size -= 3) {
+          try { out += decodeURIComponent(run.slice(at, at + size)); break; } catch (err) { /* shorter */ }
+        }
+        if (size <= 0) { out += run.slice(at, at + 3); size = 3; }
+        at += size;
+      }
+      return out;
+    });
+  }
 
   function readUtm() {
     var found = [];
@@ -422,14 +443,8 @@
     query.split('&').forEach(function (pair) {
       if (!pair) return;
       var eq = pair.indexOf('=');
-      var rawKey = eq >= 0 ? pair.slice(0, eq) : pair;
-      var rawValue = eq >= 0 ? pair.slice(eq + 1) : '';
-      var key;
-      var value;
-      try {
-        key = decodeURIComponent(rawKey.replace(/\+/g, ' '));
-        value = decodeURIComponent(rawValue.replace(/\+/g, ' '));
-      } catch (err) { return; }
+      var key = softDecode(eq >= 0 ? pair.slice(0, eq) : pair);
+      var value = softDecode(eq >= 0 ? pair.slice(eq + 1) : '');
       if (value && !(key in map)) map[key] = value;
     });
     UTM_KEYS.forEach(function (key) {
@@ -442,17 +457,30 @@
     var utm = readUtm();
     if (!utm.length) return;
 
-    function isWalkWalk(href) {
-      var match = /^(?:https?:)?\/\/([^\/?#:]+)/i.exec(href);
-      if (!match) return false;
-      var host = match[1].toLowerCase();
-      return host === 'walk-walk.ru' || host.slice(-13) === '.walk-walk.ru';
+    function isUtmHost(authority) {
+      var host = authority.replace(/^.*@/, '').replace(/:\d*$/, '').replace(/\.$/, '').toLowerCase();
+      for (var k = 0; k < UTM_HOSTS.length; k++) {
+        var root = UTM_HOSTS[k];
+        if (host === root || host.slice(-root.length - 1) === '.' + root) return true;
+      }
+      return false;
+    }
+
+    /* absolute and //host links: by host. Relative links (/path, path, ?query)
+       stay on walk-walk.ru. Anchors and other schemes (mailto:, tel:,
+       javascript:) are left alone. Browsers read a backslash as a slash. */
+    function acceptsUtm(href) {
+      var url = href.replace(/[\t\n\r]/g, '').replace(/^[\x00- ]+/, '');
+      if (!url || url.charAt(0) === '#') return false;
+      var match = /^(?:https?:)?[\/\\]{2}([^\/\\?#]*)/i.exec(url);
+      if (match) return isUtmHost(match[1]);
+      return !/^[a-z][a-z0-9+.\-]*:/i.test(url);
     }
 
     function decorateLink(link) {
       if (!link || link.nodeType !== 1 || link.tagName !== 'A') return;
-      var href = link.getAttribute('href') || '';
-      if (!isWalkWalk(href) || /[?&]utm_/i.test(href)) return;
+      var href = trim(link.getAttribute('href'));
+      if (!acceptsUtm(href) || /[?&]utm_/i.test(href)) return;
       var hashAt = href.indexOf('#');
       var hash = hashAt >= 0 ? href.slice(hashAt) : '';
       var base = hashAt >= 0 ? href.slice(0, hashAt) : href;
